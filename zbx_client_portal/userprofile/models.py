@@ -19,10 +19,12 @@ class UserProfile(models.Model):
 
 class UserLanguage(models.Model):
     language = models.CharField(max_length=20, db_index=True)
+    language_code = models.CharField(max_length=8, db_index=True)
 
     class Meta:
         db_table = 'language'
         ordering = ('language',)
+        unique_together = (('language', 'language_code'),)
         verbose_name = _('Language')
         verbose_name_plural = _('Languages')
 
