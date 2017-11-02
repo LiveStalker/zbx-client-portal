@@ -9,16 +9,16 @@ def forwards_func(apps, schema_editor):
     UserLanguage = apps.get_model("userprofile", "UserLanguage")
     db_alias = schema_editor.connection.alias
     UserLanguage.objects.using(db_alias).bulk_create([
-        UserLanguage(language="English", language_code="en-US"),
-        UserLanguage(language="Russian", language_code="ru-RU"),
+        UserLanguage(language="English", language_code="en"),
+        UserLanguage(language="Russian", language_code="ru"),
     ])
 
 
 def reverse_func(apps, schema_editor):
     UserLanguage = apps.get_model("userprofile", "UserLanguage")
     db_alias = schema_editor.connection.alias
-    UserLanguage.objects.using(db_alias).filter(language="English", language_code="en-US").delete()
-    UserLanguage.objects.using(db_alias).filter(language="Russian", language_code="ru-RU").delete()
+    UserLanguage.objects.using(db_alias).filter(language="English", language_code="en").delete()
+    UserLanguage.objects.using(db_alias).filter(language="Russian", language_code="ru").delete()
 
 
 class Migration(migrations.Migration):

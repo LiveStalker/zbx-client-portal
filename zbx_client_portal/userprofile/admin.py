@@ -9,7 +9,7 @@ class UserProfileAdmin(admin.ModelAdmin):
 
 
 class UserLanguageAdmin(admin.ModelAdmin):
-    fields = ('language',)
+    fields = ('language', 'language_code')
 
 
 admin.site.register(UserProfile, UserProfileAdmin)

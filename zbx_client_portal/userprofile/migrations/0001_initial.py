@@ -21,7 +21,7 @@ class Migration(migrations.Migration):
             fields=[
                 ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
                 ('language', models.CharField(db_index=True, max_length=20)),
-                ('language_code', models.CharField(db_index=True, max_length=8)),
+                ('language_code', models.CharField(db_index=True, max_length=5)),
             ],
             options={
                 'verbose_name': 'Language',
