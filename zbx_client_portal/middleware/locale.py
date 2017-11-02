@@ -35,3 +35,5 @@ class LocaleMiddleware(DjangoLocaleMiddleware):
         if user_timezone:
             request.timezone = pytz.timezone(user_timezone)
             timezone.activate(user_timezone)
+        else:
+            timezone.deactivate()
