@@ -6,7 +6,7 @@ from django.utils.translation import ugettext_lazy as _
 class UserProfile(models.Model):
     user = models.OneToOneField(settings.AUTH_USER_MODEL)
     language = models.OneToOneField('UserLanguage')
-    timezone = models.CharField(max_length=20, db_index=True)
+    timezone = models.CharField(max_length=20, db_index=True, default=settings.TIME_ZONE)
 
     class Meta:
         db_table = 'user_profile'

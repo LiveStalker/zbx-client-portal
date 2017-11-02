@@ -1,6 +1,7 @@
 import pytz
 from django.middleware.locale import LocaleMiddleware as DjangoLocaleMiddleware
 from django.utils.translation import LANGUAGE_SESSION_KEY
+from django.utils import timezone
 from userprofile.models import UserProfile
 
 
@@ -26,10 +27,11 @@ class LocaleMiddleware(DjangoLocaleMiddleware):
         except UserProfile.DoesNotExist:
             return
 
-        language = user_profile.language
-        if language:
-            request.session[LANGUAGE_SESSION_KEY] = language.language_code
+        user_language = user_profile.language
+        if user_language:
+            request.session[LANGUAGE_SESSION_KEY] = user_language.language_code
 
-        timezone = user_profile.timezone
-        if timezone:
-            request.timezone = pytz.timezone(timezone)
+        user_timezone = user_profile.timezone
+        if user_timezone:
+            request.timezone = pytz.timezone(user_timezone)
+            timezone.activate(user_timezone)
