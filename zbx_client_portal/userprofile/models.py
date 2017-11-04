@@ -1,7 +1,7 @@
 from django.db import models
 from django.conf import settings
 from django.utils.translation import ugettext_lazy as _
-#from django.utils.translation import ugettext as _
+from django.utils.translation import ugettext
 
 
 class UserProfile(models.Model):
@@ -15,7 +15,7 @@ class UserProfile(models.Model):
         verbose_name_plural = _('profiles')
 
     def __str__(self):
-        return _('Profile: {}').format(self.user)
+        return ugettext('Profile: {}').format(self.user)
 
 
 class UserLanguage(models.Model):
@@ -30,4 +30,4 @@ class UserLanguage(models.Model):
         verbose_name_plural = _('languages')
 
     def __str__(self):
-        return _(self.language)
+        return ugettext(self.language)
