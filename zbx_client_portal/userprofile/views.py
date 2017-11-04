@@ -2,7 +2,7 @@ from django.http import HttpResponseRedirect
 from django.contrib.auth.views import LoginView, LogoutView
 from django.urls.base import reverse
 from django.views.decorators import cache
-from django.utils.translation import ugettext as _, ugettext_lazy as _l
+from django.utils.translation import ugettext as _
 
 
 @cache.never_cache
