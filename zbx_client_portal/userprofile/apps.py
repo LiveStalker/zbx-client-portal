@@ -1,7 +1,7 @@
 from django.apps import AppConfig
-from django.utils.translation import ugettext_lazy as _l
+from django.utils.translation import ugettext_lazy as _
 
 
-class UserprofileConfig(AppConfig):
+class UserProfileConfig(AppConfig):
     name = 'userprofile'
-    verbose_name = _l('User Profile')
+    verbose_name = _('User profiles')

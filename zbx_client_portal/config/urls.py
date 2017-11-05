@@ -15,9 +15,9 @@ Including another URLconf
 """
 from django.conf.urls import url, include
 from django.contrib import admin
-from django.contrib.auth import views as auth_views
 
 urlpatterns = [
-    #url(r'', auth_views.LoginView.as_view(template_name='login.html')),
+    url(r'', include('portal.urls', namespace='portal')),
+    url(r'^account/', include('userprofile.urls', namespace='userprofile')),
     url(r'^admin/', admin.site.urls),
 ]
