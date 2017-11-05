@@ -1,0 +1,29 @@
+language: python
+
+python:
+  - "3.5"
+  - "3.6"
+
+git:
+  depth: 1
+
+services:
+  - postgresql
+
+env:
+  global:
+    - DJANGO_SETTINGS_MODULE=config.settings.ci
+    - ZBXCP_DB_NAME="zbx"
+    - ZBXCP_DB_USER="postgres"
+    - ZBXCP_DB_PASSWD=""
+
+install:
+  - pip install -r ./requirements/prod.txt
+
+before_script:
+  - psql -c 'create database zbx;' -U postgres
+
+script:
+  - cd zbx_client_portal
+  - python manage.py migrate
+  - python manage.py test
