@@ -1,0 +1,19 @@
+{% load i18n %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Zabbix Client Portal</title>
+</head>
+<body>
+{% block header %}
+    {% if user.is_authenticated %}
+        <a href="{% url 'userprofile:account' %}">{{ user.username }}</a> | <a href="{% url 'userprofile:logout' %}">{% trans "Logout" %}</a>
+    {% else %}
+        <a href="{% url 'userprofile:register' %}">{% trans "Register" %}</a> | <a href="{% url 'userprofile:login' %}">{% trans "Login" %}</a>
+    {% endif %}
+{% endblock %}
+{% block content %}
+{% endblock %}
+</body>
+</html>

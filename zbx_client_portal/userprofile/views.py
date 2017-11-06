@@ -3,6 +3,17 @@ from django.contrib.auth.views import LoginView, LogoutView
 from django.urls.base import reverse
 from django.views.decorators import cache
 from django.utils.translation import ugettext as _
+from django.shortcuts import render
+
+
+def account(request):
+    # TODO make account view
+    return render(request, template_name='account.html')
+
+
+def register(request):
+    # TODO make register view
+    return render(request, template_name='register.html')
 
 
 @cache.never_cache
