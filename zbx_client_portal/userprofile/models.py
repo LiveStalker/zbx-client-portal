@@ -2,9 +2,10 @@ from django.db import models
 from django.conf import settings
 from django.utils.translation import ugettext_lazy as _
 from django.utils.translation import ugettext
+from model_utils.models import TimeStampedModel
 
 
-class UserProfile(models.Model):
+class UserProfile(TimeStampedModel):
     user = models.OneToOneField(settings.AUTH_USER_MODEL)
     language = models.OneToOneField('UserLanguage')
     timezone = models.CharField(max_length=20, db_index=True, default=settings.TIME_ZONE)
