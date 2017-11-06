@@ -14,6 +14,7 @@ Including another URLconf
     2. Add a URL to urlpatterns:  url(r'^blog/', include('blog.urls'))
 """
 from django.conf.urls import url, include
+from django.conf import settings
 from django.contrib import admin
 
 urlpatterns = [
@@ -21,3 +22,8 @@ urlpatterns = [
     url(r'^account/', include('userprofile.urls', namespace='userprofile')),
     url(r'^admin/', admin.site.urls),
 ]
+
+if settings.DEBUG:
+    import debug_toolbar
+
+    urlpatterns = [url(r'^__debug__/', include(debug_toolbar.urls)), ] + urlpatterns
