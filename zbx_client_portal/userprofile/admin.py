@@ -5,7 +5,8 @@ from .models import UserProfile, UserLanguage
 
 class UserProfileAdmin(admin.ModelAdmin):
     form = UserProfileForm
-    fields = ('user', 'language', 'timezone')
+    fields = ('user', 'language', 'timezone', 'created', 'modified')
+    readonly_fields = ('created', 'modified')
 
 
 class UserLanguageAdmin(admin.ModelAdmin):
