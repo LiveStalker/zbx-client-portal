@@ -1,4 +1,13 @@
 {% extends "base.html" %}
+{% load i18n %}
 
 {% block content %}
+    <br>
+    Information:<br>
+    zabbix api: {{ zabbix_version }}
+    zabbix user: {{ user.userprofile.get_zabbix_user }}
+    <br>
+    <a href="">{% trans "Create project" %}</a><br>
+    <a href="">{% trans "Create hostgroup" %}</a><br>
+    <a href="">{% trans "Create host" %}</a><br>
 {% endblock %}

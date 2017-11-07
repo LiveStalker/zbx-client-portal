@@ -14,6 +14,16 @@ DATABASES = {
     }
 }
 
+ZBX_HOST = 'http://localhost:8080'
+ZBX_USER = get_env_variable('ZBX_USER')
+ZBX_PASSWD = get_env_variable('ZBX_PASSWD')
+
+ZABBIX = {
+    'HOST': ZBX_HOST,
+    'USER': ZBX_USER,
+    'PASSWD': ZBX_PASSWD
+}
+
 INSTALLED_APPS += [
     'debug_toolbar',
 ]

@@ -32,3 +32,4 @@
 ## Дополнительная информация ##
 
 * [Zabbix API](https://www.zabbix.com/documentation/3.4/manual/api)
+* [Zabbix client](https://github.com/lukecyca/pyzabbix)

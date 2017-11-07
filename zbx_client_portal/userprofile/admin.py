@@ -5,8 +5,8 @@ from .models import UserProfile, UserLanguage
 
 class UserProfileAdmin(admin.ModelAdmin):
     form = UserProfileForm
-    fields = ('user', 'language', 'timezone', 'created', 'modified')
-    readonly_fields = ('created', 'modified')
+    fields = ('user', 'language', 'timezone', 'zabbix_user_id', 'created', 'modified')
+    readonly_fields = ('zabbix_user_id', 'created', 'modified')
 
 
 class UserLanguageAdmin(admin.ModelAdmin):

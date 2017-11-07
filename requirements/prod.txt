@@ -2,3 +2,4 @@ Django==1.11.7
 pytz==2017.3
 psycopg2==2.7.3.2
 django-model-utils==3.0.0
+pyzabbix==0.7.4
