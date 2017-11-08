@@ -9,3 +9,10 @@ DATABASES = {
         'PASSWORD': ZBXCP_DB_PASSWD,
     }
 }
+
+# we do not need zabbix config on ci server
+ZABBIX = {
+    'HOST': '',
+    'USER': '',
+    'PASSWD': ''
+}

@@ -13,21 +13,7 @@ https://docs.djangoproject.com/en/1.11/ref/settings/
 import os
 from os.path import abspath, dirname, join
 from django.core.exceptions import ImproperlyConfigured
-
-
-def get_env_variable(var_name):
-    """Get the environment variable or return exception."""
-    try:
-        return os.environ[var_name]
-    except KeyError:
-        error_msg = 'Set the {} environment variable'.format(var_name)
-        raise ImproperlyConfigured(error_msg)
-
-
-def root(*dirs):
-    base_dir = join(dirname(__file__), '..', '..')
-    return abspath(join(base_dir, *dirs))
-
+from utils.utils import get_env_variable, root
 
 BASE_DIR = root()
 
