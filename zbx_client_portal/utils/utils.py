@@ -16,5 +16,5 @@ def get_env_variable(var_name, default=None):
 
 
 def root(*dirs):
-    base_dir = join(dirname(__file__), '..', '..')
+    base_dir = join(dirname(__file__), '..')
     return abspath(join(base_dir, *dirs))
