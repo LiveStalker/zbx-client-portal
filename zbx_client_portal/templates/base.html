@@ -1,11 +1,14 @@
 {% load i18n %}
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" href="{% static "css/portal.css" %}">
     <title>Zabbix Client Portal</title>
 </head>
 <body>
+<header class="header">
 {% block header %}
     {% if user.is_authenticated %}
         <a href="{% url 'userprofile:account' %}">{{ user.username }}</a> | <a href="{% url 'userprofile:logout' %}">{% trans "Logout" %}</a>
@@ -13,7 +16,14 @@
         <a href="{% url 'userprofile:register' %}">{% trans "Register" %}</a> | <a href="{% url 'userprofile:login' %}">{% trans "Login" %}</a>
     {% endif %}
 {% endblock %}
+</header>
+<div class="wrapper">
 {% block content %}
 {% endblock %}
+<div style="clear: both"></div>
+</div>
+<footer class="footer">
+    Zabbix Client Portal
+</footer>
 </body>
 </html>

@@ -1,15 +1,11 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
-<form action="{{ app_path }}" method="post">
-    {% csrf_token %}
-    {{ form }}
-    <input type="hidden" name="next" value="{{ next }}" />
-    <input type="submit" value="Login"/>
-</form>
-</body>
-</html>
+{% extends "base.html" %}
+{% load i18n %}
+
+{% block content %}
+    <form action="{{ app_path }}" method="post">
+        {% csrf_token %}
+        {{ form }}
+        <input type="hidden" name="next" value="{{ next }}"/>
+        <input type="submit" value="Login"/>
+    </form>
+{% endblock %}

@@ -1,0 +1,50 @@
+.header {
+    border: 1px dotted darkgrey;
+    background-color: lavender;
+    padding: 5px;
+    margin: 15px 0;
+}
+
+.footer {
+    border: 1px dotted darkgrey;
+    background-color: lavender;
+    padding: 5px;
+    margin: 15px 0;
+}
+
+.wrapper {
+    border: 1px dotted darkgrey;
+    background-color: lavender;
+    padding: 5px;
+    margin: 15px 0;
+}
+
+.info {
+    float: left;
+    margin-left: 5px;
+}
+
+.info p {
+    margin: 0;
+    padding: 5px 5px 5px 15px;
+    border-bottom: 1px solid white;
+}
+
+.item-list {
+    list-style-type: none;
+    padding: 5px 5px 5px 15px;
+    margin: 5px 0;
+}
+
+.item-list li a{
+    display: block;
+    padding: 5px;
+    margin: 5px 0;
+    color: darkblue;
+    text-decoration: none;
+    background-color: aliceblue;
+}
+
+.item-list li a:hover {
+    background-color: bisque;
+}
