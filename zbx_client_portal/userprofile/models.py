@@ -20,6 +20,13 @@ class UserProfile(TimeStampedModel):
     def __str__(self):
         return ugettext('Profile: {}').format(self.user)
 
+    @staticmethod
+    def get_default(language=settings.LANGUAGE_CODE):
+        profile = UserProfile()
+        user_language = UserLanguage.objects.get(language=language)
+        profile.language = user_language
+        return profile
+
     def get_zabbix_version(self):
         client = ZabbixGateway()
         return client.get_version()

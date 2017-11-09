@@ -18,7 +18,8 @@ class LoginViewTestCase(TestCase):
 
     def test_account(self):
         response = self.client.get(reverse('userprofile:account'))
-        self.assertRedirects(response, reverse('userprofile:login'))
+        self.assertRedirects(response, '%s?next=%s' % (reverse('userprofile:login'),
+                                                       reverse('userprofile:account')))
         self.client.force_login(self.user)
         response = self.client.get(reverse('userprofile:account'))
         self.assertEqual(response.status_code, 200)

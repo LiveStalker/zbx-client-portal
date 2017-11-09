@@ -10,9 +10,6 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/1.11/ref/settings/
 """
 
-import os
-from os.path import abspath, dirname, join
-from django.core.exceptions import ImproperlyConfigured
 from utils.utils import get_env_variable, root
 
 BASE_DIR = root()
@@ -104,7 +101,7 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/1.11/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = 'en'
 
 TIME_ZONE = 'UTC'
 
@@ -129,3 +126,6 @@ STATICFILES_DIRS = [
 LOGIN_URL = 'userprofile:login'
 LOGIN_REDIRECT_URL = 'portal:index'
 LOGOUT_REDIRECT_URL = 'userprofile:login'
+
+# admin
+ADMIN_URL = r'^admin/'

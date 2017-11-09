@@ -20,7 +20,7 @@ from django.contrib import admin
 urlpatterns = [
     url(r'', include('portal.urls', namespace='portal')),
     url(r'^account/', include('userprofile.urls', namespace='userprofile')),
-    url(r'^admin/', admin.site.urls),
+    url(settings.ADMIN_URL, admin.site.urls),
 ]
 
 if settings.DEBUG:

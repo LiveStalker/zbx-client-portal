@@ -7,6 +7,7 @@ from django.views.decorators import cache
 from django.utils.translation import ugettext as _
 from django.shortcuts import render, redirect
 from .forms import SignUpForm
+from .models import UserProfile
 
 
 @login_required()
