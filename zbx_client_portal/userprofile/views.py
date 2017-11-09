@@ -3,17 +3,19 @@ from django.contrib.auth.views import LoginView, LogoutView
 from django.urls.base import reverse
 from django.views.decorators import cache
 from django.utils.translation import ugettext as _
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 
 
 def account(request):
-    # TODO make account view
-    return render(request, template_name='account.html')
+    if request.user.is_authenticated:
+        return render(request, template_name='account.html')
+    return redirect(reverse('userprofile:login'))
 
 
 def register(request):
-    # TODO make register view
-    return render(request, template_name='register.html')
+    if request.user.is_authenticated:
+        return render(request, template_name='register.html')
+    return redirect(reverse('userprofile:login'))
 
 
 @cache.never_cache
