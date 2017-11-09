@@ -1,7 +1,6 @@
 import pytz
 from django.forms import ModelForm, ChoiceField
 from django.conf import settings
-from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm
 from .models import UserProfile
 

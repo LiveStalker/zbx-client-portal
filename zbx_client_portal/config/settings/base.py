@@ -126,5 +126,6 @@ STATICFILES_DIRS = [
 ]
 
 # django.contrib.auth
+LOGIN_URL = 'userprofile:login'
 LOGIN_REDIRECT_URL = 'portal:index'
 LOGOUT_REDIRECT_URL = 'userprofile:login'

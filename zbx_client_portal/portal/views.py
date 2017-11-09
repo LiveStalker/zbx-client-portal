@@ -1,8 +1,7 @@
-from django.shortcuts import render, redirect
-from django.urls import reverse
+from django.shortcuts import render
+from django.contrib.auth.decorators import login_required
 
 
+@login_required()
 def index(request):
-    if request.user.is_anonymous:
-        return redirect(reverse('userprofile:login'))
     return render(request, 'index.html')
