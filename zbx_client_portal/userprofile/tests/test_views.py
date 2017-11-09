@@ -23,9 +23,9 @@ class LoginViewTestCase(TestCase):
         response = self.client.get(reverse('userprofile:account'))
         self.assertEqual(response.status_code, 200)
 
-    def test_register(self):
-        response = self.client.get(reverse('userprofile:register'))
-        self.assertRedirects(response, reverse('userprofile:login'))
-        self.client.force_login(self.user)
-        response = self.client.get(reverse('userprofile:register'))
+    def test_signup(self):
+        response = self.client.get(reverse('userprofile:signup'))
         self.assertEqual(response.status_code, 200)
+        self.client.force_login(self.user)
+        response = self.client.get(reverse('userprofile:signup'))
+        self.assertRedirects(response, reverse('portal:index'))
