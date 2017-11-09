@@ -11,7 +11,7 @@ class ZabbixGateway(object):
     def get_version(self):
         return self.zabbix.api_version()
 
-    def get_zabbix_user(self, userid):
+    def get_user(self, userid):
         self.zabbix.login(self.user, self.passwd)
         params = {
             'userids': str(userid)

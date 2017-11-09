@@ -5,7 +5,7 @@
     <div class="info">
         <p>Information</p>
         <ul class="item-list">
-            <li>zabbix api: {{ zabbix_version }}</li>
+            <li>zabbix api: {{ user.userprofile.get_zabbix_version }}</li>
             <li>zabbix user: {{ user.userprofile.get_zabbix_user }}</li>
         </ul>
     </div>
