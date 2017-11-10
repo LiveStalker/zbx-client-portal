@@ -32,4 +32,4 @@ class ZabbixGateway(object):
         # TODO catch exceptions
         res = self.zabbix.user.create(alias=username, passwd=raw_password, usrgrps=groups)
         self.zabbix.user.logout()
-        return res['userids'][0]
+        return int(res['userids'][0])

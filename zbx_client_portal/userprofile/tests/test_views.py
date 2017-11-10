@@ -1,9 +1,9 @@
-from django.test import TestCase, RequestFactory, Client
+from django.test import TestCase, Client
 from django.core.urlresolvers import reverse
 from django.contrib.auth import get_user_model
 
 
-class LoginViewTestCase(TestCase):
+class UserProfileViewsTestCase(TestCase):
     def setUp(self):
         self.client = Client()
         self.user = get_user_model().objects.create_user('test_user')

@@ -8,7 +8,8 @@ from zabbix.gateway import ZabbixGateway
 
 class UserProfile(TimeStampedModel):
     user = models.OneToOneField(settings.AUTH_USER_MODEL)
-    language = models.OneToOneField('UserLanguage')
+    # TODO change CASCADE
+    language = models.ForeignKey('UserLanguage', on_delete=models.CASCADE, null=True)
     timezone = models.CharField(max_length=20, db_index=True, default=settings.TIME_ZONE)
     zabbix_user_id = models.IntegerField(default=0)
     zabbix_gw = ZabbixGateway()
