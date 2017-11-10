@@ -1,4 +1,4 @@
-from django.db import models
+from django.db import models, IntegrityError
 from django.conf import settings
 from django.utils.translation import ugettext_lazy as _
 from django.utils.translation import ugettext
@@ -11,6 +11,7 @@ class UserProfile(TimeStampedModel):
     language = models.OneToOneField('UserLanguage')
     timezone = models.CharField(max_length=20, db_index=True, default=settings.TIME_ZONE)
     zabbix_user_id = models.IntegerField(default=0)
+    zabbix_gw = ZabbixGateway()
 
     class Meta:
         db_table = 'user_profile'
@@ -20,20 +21,29 @@ class UserProfile(TimeStampedModel):
     def __str__(self):
         return ugettext('Profile: {}').format(self.user)
 
+    def save(self, *args, **kwargs):
+        if not self.pk:
+            if 'username' not in kwargs or 'raw_password' not in kwargs:
+                raise IntegrityError('Can not create zabbix user, missing username or password.')
+            self.zabbix_user_id = self.create_zabbix_user(kwargs.pop('username'), kwargs.pop('raw_password'))
+        super(UserProfile, self).save(*args, **kwargs)
+
     @staticmethod
-    def get_default(language=settings.LANGUAGE_CODE):
+    def get_default(language_code=settings.LANGUAGE_CODE):
         profile = UserProfile()
-        user_language = UserLanguage.objects.get(language=language)
-        profile.language = user_language
+        # TODO catch if object does not exists
+        language = UserLanguage.objects.get(language_code=language_code)
+        profile.language = language
         return profile
 
     def get_zabbix_version(self):
-        client = ZabbixGateway()
-        return client.get_version()
+        return self.zabbix_gw.get_version()
 
     def get_zabbix_user(self):
-        client = ZabbixGateway()
-        return client.get_user(self.zabbix_user_id)
+        return self.zabbix_gw.get_user(self.zabbix_user_id)
+
+    def create_zabbix_user(self, username, raw_password):
+        return self.zabbix_gw.create_user(username, raw_password)
 
 
 class UserLanguage(models.Model):

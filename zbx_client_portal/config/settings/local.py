@@ -17,11 +17,13 @@ DATABASES = {
 ZBX_HOST = 'http://localhost:8080'
 ZBX_USER = get_env_variable('ZBX_USER')
 ZBX_PASSWD = get_env_variable('ZBX_PASSWD')
+ZBX_GID = get_env_variable('ZBX_GID')
 
 ZABBIX = {
     'HOST': ZBX_HOST,
     'USER': ZBX_USER,
-    'PASSWD': ZBX_PASSWD
+    'PASSWD': ZBX_PASSWD,
+    'DEFAULT_GID': ZBX_GID
 }
 
 INSTALLED_APPS += [
