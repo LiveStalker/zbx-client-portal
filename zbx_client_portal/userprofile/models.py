@@ -32,19 +32,23 @@ class UserProfile(TimeStampedModel):
     @staticmethod
     def get_default(language_code=settings.LANGUAGE_CODE):
         profile = UserProfile()
-        # TODO catch if object does not exists
-        language = UserLanguage.objects.get(language_code=language_code)
+        try:
+            language = UserLanguage.objects.get(language_code=language_code)
+        except UserLanguage.DoesNotExist:
+            language = None
         profile.language = language
         return profile
 
-    def get_zabbix_version(self):
-        return self.zabbix_gw.get_version()
+    @staticmethod
+    def get_zabbix_version():
+        return UserProfile.zabbix_gw.get_version()
 
     def get_zabbix_user(self):
-        return self.zabbix_gw.get_user(self.zabbix_user_id)
+        return UserProfile.zabbix_gw.get_user(self.zabbix_user_id)
 
-    def create_zabbix_user(self, username, raw_password):
-        return self.zabbix_gw.create_user(username, raw_password)
+    @staticmethod
+    def create_zabbix_user(username, raw_password):
+        return UserProfile.zabbix_gw.create_user(username, raw_password)
 
 
 class UserLanguage(models.Model):
