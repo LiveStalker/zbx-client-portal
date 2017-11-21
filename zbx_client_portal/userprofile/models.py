@@ -64,3 +64,12 @@ class UserLanguage(models.Model):
 
     def __str__(self):
         return ugettext(self.language)
+
+
+class BadUsername(models.Model):
+    username = models.CharField(_('username'), max_length=150, unique=True)
+
+    class Meta:
+        db_table = 'bad_username'
+        verbose_name = _('bad username')
+        verbose_name_plural = _('bad usernames')
