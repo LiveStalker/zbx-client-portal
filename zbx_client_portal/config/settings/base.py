@@ -33,7 +33,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'portal',
     'userprofile',
-    'zabbix'
+    'zabbix',
+    'project'
 ]
 
 MIDDLEWARE = [
