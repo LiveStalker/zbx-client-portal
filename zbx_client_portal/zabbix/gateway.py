@@ -33,3 +33,16 @@ class ZabbixGateway(object):
         res = self.zabbix.user.create(alias=username, passwd=raw_password, usrgrps=groups)
         self.zabbix.user.logout()
         return int(res['userids'][0])
+
+    def create_usergroup(self, zabbix_user_id, project_id):
+        """Create zabbix usergroup.
+        zabbix method: usergroup.create
+        zabbix doc: https://www.zabbix.com/documentation/3.4/manual/api/reference/usergroup/create
+        """
+        self.zabbix.login(self.user, self.passwd)
+        usergroup_name = 'customer_%s' % (project_id,)
+        members = [zabbix_user_id]
+        # TODO catch exceptions
+        res = self.zabbix.usergroup.create(name=usergroup_name, userids=members)
+        self.zabbix.user.logout()
+        return int(res['usrgrpids'][0])

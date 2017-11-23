@@ -1,9 +1,11 @@
 from django.conf import settings
+from django.contrib.auth import get_user_model
 from django.db import models
 from django.utils.translation import ugettext as _
 from django.utils.translation import ugettext_lazy as _l
 from django.core.exceptions import ObjectDoesNotExist
 from model_utils.models import TimeStampedModel
+from userprofile.models import UserProfile
 
 from zabbix.gateway import ZabbixGateway
 
@@ -25,16 +27,19 @@ class Project(TimeStampedModel):
     def create_project(request, form):
         project = form.save(commit=False)
         project.owner = request.user
-        project.zabbix_group_id = Project.create_zabbix_group(request.user)
         project.save()
+        project.zabbix_group_id = Project.create_zabbix_usergroup(request.user, project.id)
         return project
 
     @staticmethod
-    def create_zabbix_group(user):
-        # TODO realize me
-        # create user group in zabbix
-        # join user into this group
-        return 0
+    def create_zabbix_usergroup(user, project_id):
+        um = get_user_model()
+        try:
+            profile = user.userprofile
+            zabbix_user_id = profile.zabbix_user_id
+            return Project.zabbix_gw.create_usergroup(zabbix_user_id, project_id)
+        except UserProfile.DoesNotExist:
+            pass
 
     def __str__(self):
         try:
