@@ -12,9 +12,25 @@
     <div class="info">
         <p>Actions</p>
         <ul class="item-list">
-            <li><a href="">{% trans "Create project" %}</a></li>
+            <li><a href="{% url 'project:create' %}">{% trans "Create project" %}</a></li>
             <li><a href="">{% trans "Create hostgroup" %}</a></li>
             <li><a href="">{% trans "Create host" %}</a></li>
+        </ul>
+    </div>
+    <div class="info">
+        <p>Projects (Owner)</p>
+        <ul class="item-list">
+            {% for p in owned_projects %}
+                <li><a href="{% url 'project:detail' p.id %}">{{ p.name }}</a></li>
+            {% endfor %}
+        </ul>
+    </div>
+    <div class="info">
+        <p>Projects (Member)</p>
+        <ul class="item-list">
+            {% for p in member %}
+                <li>{{ p.name }}</li>
+            {% endfor %}
         </ul>
     </div>
 {% endblock %}

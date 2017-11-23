@@ -21,11 +21,26 @@ class Project(TimeStampedModel):
         verbose_name = _l('project')
         verbose_name_plural = _l('projects')
 
+    @staticmethod
+    def create_project(request, form):
+        project = form.save(commit=False)
+        project.owner = request.user
+        project.zabbix_group_id = Project.create_zabbix_group(request.user)
+        project.save()
+        return project
+
+    @staticmethod
+    def create_zabbix_group(user):
+        # TODO realize me
+        # create user group in zabbix
+        # join user into this group
+        return 0
+
     def __str__(self):
         try:
             return _('%s owned by %s') % (self.name, self.owner or None)
         except ObjectDoesNotExist:
-            return _('%s orphaned or does not saved yet') % (self.name, )
+            return _('%s orphaned or does not saved yet') % (self.name,)
 
 
 class ProjectToMember(TimeStampedModel):

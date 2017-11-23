@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+{% load i18n %}
+
+{% block content %}
+    <form action="{{ app_path }}" method="post">
+        {% csrf_token %}
+        {% for f in form %}
+            <p>
+                {{ f.label_tag }} {{ f }}
+            </p>
+        {% endfor %}
+        <input type="submit" value="Create">
+    </form>
+{% endblock %}

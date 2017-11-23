@@ -20,6 +20,7 @@ from django.contrib import admin
 urlpatterns = [
     url(r'', include('portal.urls', namespace='portal')),
     url(r'^account/', include('userprofile.urls', namespace='userprofile')),
+    url(r'^project/', include('project.urls', namespace='project')),
     url(settings.ADMIN_URL, admin.site.urls),
 ]
 

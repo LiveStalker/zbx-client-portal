@@ -4,4 +4,7 @@ from django.contrib.auth.decorators import login_required
 
 @login_required()
 def index(request):
-    return render(request, 'index.html')
+    owned_projects = request.user.owned_projects.all()
+    member = request.user.projects.all()
+    return render(request, 'index.html', context={'owned_projects': owned_projects,
+                                                  'member': member})
